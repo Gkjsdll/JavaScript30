@@ -59,7 +59,7 @@
 
 <script>
   let slice = arrLike => Array.prototype.slice.call(arrLike);
-  let body = document.getElementsByTagName('body')[0];
+  let body = document.querySelector('body');
   
   let keys = slice(document.getElementsByClassName('key'));
   let audioClips = slice(document.getElementsByTagName('audio'));
@@ -87,11 +87,12 @@
       return;
     }
 
+    targetAudio.currentTime = 0;
     targetAudio.play();
     targetAudio.onended = () => {
-      targetKey.className = 'key';
+      targetKey.classList.remove('playing');
     };
-    targetKey.className += ' playing';
+    targetKey.classList.add('playing');
 
   };
 </script>
